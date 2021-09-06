@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Feedback System</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/venobox/venobox.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='vendor/aos/aos.css')}}" rel="stylesheet">
+
+
+  <link href="lib/nivo-slider/css/nivo-slider.css" rel="stylesheet">
+  <link href="lib/owlcarousel/owl.carousel.css" rel="stylesheet">
+  <link href="lib/owlcarousel/owl.transitions.css" rel="stylesheet">
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/venobox/venobox.css" rel="stylesheet">
+  
+
+
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+
+  {% block code_block %}
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+   
+
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(lineChart);
+   
+
+      function lineChart() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Month');
+            data.addColumn('number', 'Positive');
+            data.addColumn('number', 'Negative');
+            data.addColumn('number', 'Neutral');
+
+            data.addRows([
+              [1,  37.8, 80.8, 41.8],
+              [2,  30.9, 69.5, 32.4],
+              [3,  25.4,   57, 25.7],
+              [4,  11.7, 18.8, 10.5],
+              [5,  11.9, 17.6, 10.4],
+              [6,   8.8, 13.6,  7.7],
+              [7,   7.6, 12.3,  9.6],
+              [8,  12.3, 29.2, 10.6],
+              [9,  16.9, 42.9, 14.8],
+              [10, 12.8, 30.9, 11.6],
+              [11,  5.3,  7.9,  4.7],
+              [12,  6.6,  8.4,  5.2]
+            ]);
+
+            var options = {
+              chart: {
+                title: 'Trends in Sentiments',
+                subtitle: 'count of sentiments'
+              }
+            };
+
+            var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+            chart.draw(data, google.charts.Line.convertOptions(options));
+            } 
+  
+
+
+    </script>
+
+</head>
+
+<body>
+
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+
+      <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+      <div class="logo d-block d-lg-none">
+        <a href="index.html"><img src="{{url_for('static',filename='img/logo.png')}}" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="#about">Result Dashboard</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <!--<li><a href="/displayteacherfeedbacks">Display Feedbacks</a></li>-->
+          <li><a href="/logout">Logout</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+
+    
+    <!-- ======= Staff Dashboard Section ======= -->
+
+    <section id="about" class="about">
+      <div class="container">
+
+          <div class="section-title" data-aos="fade-up">
+              <h2>Dashboard</h2>
+            </div>
+
+          <div class="our-skill-area fix hidden-sm">
+    <div class="test-overly"></div>
+    <div class="skill-bg area-padding-2">
+
+        <div class="row">
+        <div class="col-sm-12" style="text-align: center"><h2 style="color: aqua">Feedbacks</h2></div>
+        </div>
+        <div class="row">
+        <div class="col-md-3 col-sm-3 d-flex justify-content-center text-center">
+          <div class="clearfix">
+            <div class="c100 p100 big">
+              <span style="color: black">{{ ttf }}</span>
+              <div class="slice">
+                  <div class="bar"></div>
+                  <div class="fill"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-3 col-sm-3 d-flex justify-content-center text-center">
+          <div class="clearfix">
+            <div class="c100 p{{tpf}} big">
+              <span style="color: black">{{ ttp }}%</span>
+              <div class="slice">
+                  <div class="bar"></div>
+                  <div class="fill"></div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      <div class="col-md-3 col-sm-3 d-flex justify-content-center">
+        <div class="clearfix">
+          <div class="c100 p{{tneuf}} big">
+              <span style="color: black">{{ttneu}}%</span>
+              <div class="slice">
+                  <div class="bar"></div>
+                  <div class="fill"></div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    <div class="col-md-3 col-sm-3 d-flex justify-content-center text-center">
+      <div class="clearfix">
+        <div class="c100 p{{tnegf}} big">
+            <span style="color: black">{{ttn}}%</span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+      </div>
+  </div>
+    </div><!-- End of row for circular progressbar-->
+    <div class="row">
+      <div class="col-md-3 col-sm-3"><h3 style="color:aqua;text-align: center">Total</h3></div>
+      <div class="col-md-3 col-sm-3"><h3 style="color:aqua;text-align: center">Positive</h3></div>
+      <div class="col-md-3 col-sm-3"><h3 style="color:aqua;text-align: center">Neutral</h3></div>
+      <div class="col-md-3 col-sm-3"><h3 style="color:aqua;text-align: center">Negative</h3></div>
+
+    </div> <!--End of row for names-->
+        </div>
+      </div>
+    </div>
+      </div>
+    </section><!-- End Department dashboard Section -->
+
+   <!--==================Staff Dashboard Chart====================-->
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-12">
+          <div id="linechart_material" style="width: 100%; height: 500px"></div>
+       </div>
+     </div>
+   </div>
+   <!--==================End Department Dashboard Chart====================-->
+
+
+
+
+ {% endblock %}
+
+
+    <br>
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+        <div class="quote-icon">
+          <i class="bx bxs-quote-right"></i>
+        </div>
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <p>
+              Feedback is a gift. Ideas are the currency of our next success. Let people see you value both feedback and ideas.
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
+            <h3>Saul Goodman</h3>
+            <h4>Ceo &amp; Founder</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              Mistakes should be examined, learned from, and discarded; not dwelled upon and stored.
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+            <h3>Sara Wilsson</h3>
+            <h4>Designer</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              True intuitive expertise is learned from prolonged experience with good feedback on mistakes.
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
+            <h3>Jena Karlis</h3>
+            <h4>Store Owner</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              I think it’s very important to have a feedback loop, where you’re constantly thinking about what you’ve done and how you could be doing it better.
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
+            <h3>Matt Brandon</h3>
+            <h4>Freelancer</h4>
+          </div>
+
+          <div class="testimonial-item">
+            <p>
+              Communication – the human connection – is the key to personal and career success.
+            </p>
+            <img src="{{url_for('static',filename='img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
+            <h3>John Larson</h3>
+            <h4>Entrepreneur</h4>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Sinhagad,<br>Pune, 411051</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@feedback.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+91 814896589</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <a href="#header" class="scrollto footer-logo"><img src="{{url_for('static',filename='img/hero-logo.png')}}" alt=""></a>
+            <h3>Student feedback system</h3>
+          </div>
+        </div>
+
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6">
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Get in touch">
+            </form>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SFS</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/jquery-sticky/jquery.sticky.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/aos/aos.js')}}"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+</body>
+
+</html>
