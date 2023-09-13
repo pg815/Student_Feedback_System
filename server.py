@@ -7,6 +7,7 @@ from analytics import write_to_csv_departments,write_to_csv_teachers
 from models import StemmedCountVectorizer
 from analytics import get_counts,get_tables,get_titles
 from teacherdashboard import get_feedback_counts
+from data_negative import negative_data
 
 app = Flask(__name__)
 
@@ -78,6 +79,12 @@ def logout():
     session['logged_in'] = False
     return render_template('index.html')
 
+@app.route("/improvements", methods=['POST'])
+def improvements():
+    negative_data()
+    df = pd.read_csv('database_negative_feedback.csv')
+    data_list = df.to_dict(orient='records')
+    return render_template(render_template='improvements.html', data= data_list)
 
 @app.route("/predict", methods=['POST'])
 def predict():
